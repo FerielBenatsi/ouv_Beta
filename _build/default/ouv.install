@@ -1,0 +1,8 @@
+lib: [
+  "_build/install/default/lib/ouv/META"
+  "_build/install/default/lib/ouv/dune-package"
+  "_build/install/default/lib/ouv/opam"
+]
+bin: [
+  "_build/install/default/bin/ouv"
+]
