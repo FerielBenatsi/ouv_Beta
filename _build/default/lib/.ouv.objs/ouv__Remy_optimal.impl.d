@@ -1,1 +1,1 @@
-lib/remy_optimal.ml: Arbre_binaire Array Random
+lib/remy_optimal.ml: Arbre_binaire Array List Random

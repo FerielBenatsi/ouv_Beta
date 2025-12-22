@@ -1,14 +1,14 @@
 (* ========================================================================= *)
-(* Question 1.2 — Algorithme de Rémy (prototype)                             *)
+(* Question 1.2 — Algorithme de Remy (prototype)                             *)
 (* ========================================================================= *)
 
 open Arbre_binaire
 
 (* ------------------------------------------------------------------------- *)
-(* Accès et remplacement par position                                         *)
+(* Acces et remplacement par position                                         *)
 (* ------------------------------------------------------------------------- *)
 
-(* Récupère le sous-arbre correspondant à une position donnée *)
+(* Récupère le sous-arbre correspondant a une position donnée *)
 let rec sous_arbre_a_position arbre position =
   match arbre with
   | Feuille ->
@@ -23,7 +23,7 @@ let rec sous_arbre_a_position arbre position =
       else
         sous_arbre_a_position d (position - total_gauche - 1)
 
-(* Remplace le sous-arbre à une position donnée *)
+(* Remplace le sous-arbre a une position donnée *)
 let rec remplacer_a_position arbre position nouveau =
   match arbre with
   | Feuille ->
@@ -70,3 +70,25 @@ let generer_arbre n =
     else construire (k + 1) (etape_remy arbre)
   in
   construire 0 Feuille
+
+
+
+  (*=================== complexité ===============*)
+  (*-------------------Hypothese --------------*)
+  (*
+  n : nmbre de noeud interne 
+  n+1: nmbre de feuille 
+  2n+1 : nmbre totale de noeuds 
+
+
+  une etape de remy : 
+
+    nbr_totale_noeuds : parcours tous larbre -> O(taille) -> O(n)
+  sous_arbre_a_position -> O(n)
+  remplacer_a_position -> O(n)
+
+  totale : O(n)
+
+  generation :
+   n fois etape de remy -> O(n²)
+  *)

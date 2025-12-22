@@ -1,3 +1,9 @@
 (test
  (name test_remy_prot)
-  (libraries ouv))
+ (modules test_remy_prot)
+ (libraries ouv))
+
+(test
+ (name test_remy_opt)
+ (modules test_remy_opt)
+ (libraries ouv))

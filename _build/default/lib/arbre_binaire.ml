@@ -4,7 +4,7 @@
 
 (* Arbre binaire plein :
    - une feuille
-   - ou un nœud interne avec exactement deux enfants *)
+   - ou un noeud interne avec exactement deux enfants *)
 type arbre_binaire =
   | Feuille
   | Noeud of arbre_binaire * arbre_binaire
@@ -25,7 +25,7 @@ let rec nombre_feuilles = function
   | Noeud (g, d) ->
       nombre_feuilles g + nombre_feuilles d
 
-(* Nombre total de nœuds (internes + feuilles) *)
+(* Nombre total de noeuds (internes + feuilles) *)
 let nombre_total_noeuds a =
   nombre_noeuds_internes a + nombre_feuilles a
 
