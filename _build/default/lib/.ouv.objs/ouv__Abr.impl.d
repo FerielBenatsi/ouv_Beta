@@ -1,1 +1,1 @@
-lib/abr.ml: Arbre_binaire Array List Random
+lib/abr.ml: Arbre_binaire Array Random

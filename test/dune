@@ -17,3 +17,9 @@
  (name test_abr)
  (modules test_abr)
  (libraries ouv))
+
+
+(test
+ (name experiment)
+ (modules experiment)
+ (libraries ouv unix))

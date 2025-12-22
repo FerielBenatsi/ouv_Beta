@@ -1,25 +1,29 @@
 open Arbre_binaire
 
-(* Génération d’un arbre binaire de type ABR de taille n *)
+(* Génération d’un arbre binaire de type ABR en O(n) *)
 let generer_abr n =
   Random.self_init ();
 
-  (* Tableau mutable pour stocker les nœuds *)
+  (* Nombre total de nœuds (internes + feuilles) *)
   let taille_max = 2 * n + 1 in
+
+  (* Représentation mutable de l’arbre *)
   let gauche = Array.make taille_max (-1) in
   let droite = Array.make taille_max (-1) in
 
-  (* Liste des feuilles actives (indices) *)
-  let feuilles = ref [0] in
+  (* Tableau des feuilles actives *)
+  let feuilles = Array.make (n + 1) 0 in
+  let nb_feuilles = ref 1 in
+  feuilles.(0) <- 0;
 
   (* Prochain indice libre *)
   let prochain = ref 1 in
 
   (* Construction itérative *)
   for _ = 1 to n do
-    (* Choix uniforme d’une feuille *)
-    let k = Random.int (List.length !feuilles) in
-    let feuille = List.nth !feuilles k in
+    (* Choix uniforme d’une feuille en O(1) *)
+    let k = Random.int !nb_feuilles in
+    let feuille = feuilles.(k) in
 
     (* Création des deux nouvelles feuilles *)
     let f_g = !prochain in
@@ -30,9 +34,14 @@ let generer_abr n =
     gauche.(feuille) <- f_g;
     droite.(feuille) <- f_d;
 
-    (* Mise a jour de la liste des feuilles *)
-    feuilles :=
-      f_g :: f_d :: List.filter (fun x -> x <> feuille) !feuilles
+    (* Suppression de la feuille choisie (swap avec la dernière) *)
+    feuilles.(k) <- feuilles.(!nb_feuilles - 1);
+    nb_feuilles := !nb_feuilles - 1;
+
+    (* Ajout des deux nouvelles feuilles *)
+    feuilles.(!nb_feuilles) <- f_g;
+    feuilles.(!nb_feuilles + 1) <- f_d;
+    nb_feuilles := !nb_feuilles + 2
   done;
 
   (* Conversion finale en arbre fonctionnel *)
