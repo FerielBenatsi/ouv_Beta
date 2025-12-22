@@ -40,7 +40,9 @@ let run_tests () =
       test_structure 1;
       test_structure 5;
       test_structure 10;
-      test_structure 50 ]
+      test_structure 50;
+      test_structure 100; 
+      test_structure 1000; ]
   in
 
   if List.for_all (fun x -> x) tests then
