@@ -7,3 +7,13 @@
  (name test_remy_opt)
  (modules test_remy_opt)
  (libraries ouv))
+
+(test
+ (name dot)
+ (modules dot)
+ (libraries ouv))
+
+(test
+ (name test_abr)
+ (modules test_abr)
+ (libraries ouv))
