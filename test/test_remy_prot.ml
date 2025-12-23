@@ -1,9 +1,7 @@
 open Ouv.Arbre_binaire
 open Ouv.Remy_prototype
 
-(* ----------------------------- *)
-(* Test global pour une taille n *)
-(* ----------------------------- *)
+(*Test global pour taille n*)
 
 let test_global n =
   let a = generer_arbre n in
@@ -17,13 +15,11 @@ let test_global n =
 
   ok_noeuds && ok_feuilles
 
-(* ----------------------------- *)
-(* Lancement des tests           *)
-(* ----------------------------- *)
+
+(*Lancement tests*)
 
 let run_tests () =
   Random.self_init ();
-
   let tests =
     [ test_global 1000;
       test_global 100;
@@ -33,10 +29,9 @@ let run_tests () =
       test_global 1;
       test_global 0 ]
   in
-
   if List.for_all (fun x -> x) tests then
-    print_endline "\nTous les tests sont PASSÉS ✅"
+    print_endline "\n TESTS REMY PROTOTYPE OK!!"
   else
-    print_endline "\nCertains tests ont ÉCHOUÉ ❌"
+    print_endline "\n TESTS REMY PROTOTYPE PAS OK!!"
 
 let () = run_tests ()

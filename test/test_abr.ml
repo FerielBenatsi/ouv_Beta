@@ -1,9 +1,7 @@
 open Ouv.Arbre_binaire
 open Ouv.Abr
 
-(* ----------------------------- *)
-(* Test ABR                      *)
-(* ----------------------------- *)
+(*Test ABR*)
 
 let test_abr n =
   let a = generer_abr n in
@@ -13,7 +11,6 @@ let test_abr n =
   Printf.printf
     "ABR n=%d | noeuds=%b | feuilles=%b\n"
     n noeuds feuilles;
-
   noeuds && feuilles
 
 let () =
@@ -26,8 +23,7 @@ let () =
       test_abr 10;
       test_abr 50 ]
   in
-
   if List.for_all (fun x -> x) tests then
-    print_endline "\nTous les tests ABR sont PASSÉS ✅"
+    print_endline "\nTESTS OK!!"
   else
-    print_endline "\nCertains tests ABR ont ÉCHOUÉ ❌"
+    print_endline "\nTESTS PAS OK!!"

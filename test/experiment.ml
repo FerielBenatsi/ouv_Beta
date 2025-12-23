@@ -3,10 +3,7 @@ open Ouv.Remy_optimal
 open Ouv.Abr
 open Unix
 
-(* ----------------------------- *)
-(* Mesures sur les arbres        *)
-(* ----------------------------- *)
-
+(*Mesures sur les arbres*)
 let taille_gauche = function
   | Feuille -> 0
   | Noeud (g, _) -> nombre_noeuds_internes g
@@ -22,20 +19,21 @@ let profondeur_moyenne_feuilles arbre =
   let (somme, nb) = aux 0 arbre in
   float_of_int somme /. float_of_int nb
 
-(* ----------------------------- *)
-(* Chronométrage                 *)
-(* ----------------------------- *)
+(*Validation expérimentale de la complexité linéaire*)
+let _mesurer_temps_construction gen n =
+  let t0 = gettimeofday () in
+  let _ = gen n in
+  let t1 = gettimeofday () in
+  (t1 -. t0) *. 1000.0
 
+(*Chronométrage*)
 let time f =
   let t0 = gettimeofday () in
   let x = f () in
   let t1 = gettimeofday () in
   (x, (t1 -. t0) *. 1000.0)  (* ms *)
 
-(* ----------------------------- *)
-(* Expérimentations              *)
-(* ----------------------------- *)
-
+(*Expérimentations*)
 let tailles = [50; 100; 200; 500; 1000; 2000; 5000]
 let repetitions = 50
 
@@ -44,16 +42,17 @@ let () =
 
   let oc = open_out "results.csv" in
   output_string oc
-    "algo,n,rep,hauteur,prof_feuilles,taille_gauche,time_ms\n";
+    "algo,n,rep,hauteur,largeur,prof_feuilles,taille_gauche,time_ms\n";
 
   let run algo_name gen n rep =
     let (a, t) = time (fun () -> gen n) in
     Printf.fprintf oc
-      "%s,%d,%d,%d,%.4f,%d,%.4f\n"
+      "%s,%d,%d,%d,%d,%.4f,%d,%.4f\n"
       algo_name
       n
       rep
       (hauteur a)
+      (largeur a)
       (profondeur_moyenne_feuilles a)
       (taille_gauche a)
       t
@@ -67,4 +66,4 @@ let () =
   ) tailles;
 
   close_out oc;
-  print_endline "Fichier results.csv généré."
+

@@ -1,8 +1,6 @@
 open Ouv.Arbre_binaire
-open Ouv.Remy_optimal
-(* ----------------------------- *)
-(* Fonctions de test auxiliaires *)
-(* ----------------------------- *)
+
+(*Fonctions de test auxiliaires*)
 
 let rec est_binaire_plein = function
   | Feuille -> true
@@ -17,9 +15,7 @@ let rec nombre_noeuds_internes = function
   | Noeud (g, d) ->
       1 + nombre_noeuds_internes g + nombre_noeuds_internes d
 
-(* ----------------------------- *)
-(* Tests unitaires               *)
-(* ----------------------------- *)
+(*Tests unitaires*)
 
 let test_structure n =
   let a = generer_arbre n in
@@ -34,7 +30,6 @@ let test_structure n =
 
 let run_tests () =
   Random.self_init ();
-
   let tests =
     [ test_structure 0;
       test_structure 1;
@@ -44,10 +39,9 @@ let run_tests () =
       test_structure 100; 
       test_structure 1000; ]
   in
-
   if List.for_all (fun x -> x) tests then
-    print_endline "\nTous les tests Q1.4 sont PASSÉS ✅"
+    print_endline "\nTESTS OK!!! (question 1.4)"
   else
-    print_endline "\nCertains tests Q1.4 ont ÉCHOUÉ ❌"
-
+    print_endline "\nTESTS PAS OK!!! (question 1.4)"
+    
 let () = run_tests ()

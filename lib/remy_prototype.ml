@@ -1,14 +1,10 @@
-(* ========================================================================= *)
-(* Question 1.2 — Algorithme de Remy (prototype)                             *)
-(* ========================================================================= *)
+(*Q1.2 : prototype algorithme de Rémy*)
 
 open Arbre_binaire
 
-(* ------------------------------------------------------------------------- *)
-(* Acces et remplacement par position                                         *)
-(* ------------------------------------------------------------------------- *)
+(*Acces et remplacement par position*)
 
-(* Récupère le sous-arbre correspondant a une position donnée *)
+(*Récupère le sous-arbre correspondant a une position donnée*)
 let rec sous_arbre_a_position arbre position =
   match arbre with
   | Feuille ->
@@ -23,7 +19,7 @@ let rec sous_arbre_a_position arbre position =
       else
         sous_arbre_a_position d (position - total_gauche - 1)
 
-(* Remplace le sous-arbre a une position donnée *)
+(*Remplace le sous-arbre a une position donnée*)
 let rec remplacer_a_position arbre position nouveau =
   match arbre with
   | Feuille ->
@@ -38,10 +34,8 @@ let rec remplacer_a_position arbre position nouveau =
       else
         Noeud (g, remplacer_a_position d (position - total_gauche - 1) nouveau)
 
-(* ------------------------------------------------------------------------- *)
-(* Une étape de l'algorithme de Rémy                                          *)
-(* ------------------------------------------------------------------------- *)
 
+(*Une étape de l'algorithme de Rémy*)
 let etape_remy arbre =
   let total = nombre_total_noeuds arbre in
   let position = Random.int total in
@@ -59,10 +53,7 @@ let etape_remy arbre =
 
   remplacer_a_position arbre position nouveau_noeud
 
-(* ------------------------------------------------------------------------- *)
-(* Génération d'un arbre de taille n                                          *)
-(* ------------------------------------------------------------------------- *)
-
+(*Génération d'un arbre de taille n*)
 let generer_arbre n =
   Random.self_init ();
   let rec construire k arbre =

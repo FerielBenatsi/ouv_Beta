@@ -3,7 +3,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 df = pd.read_csv("results.csv")
-
 ALGOS = ["Remy", "ABR"]
 
 def agg_stats(sub: pd.DataFrame, metric: str):
@@ -15,11 +14,10 @@ def agg_stats(sub: pd.DataFrame, metric: str):
     })
     return out
 
-# -----------------------
-# Graphes des métriques
-# -----------------------
+#Graphes métriques
 metrics = {
     "hauteur": "Hauteur",
+    "largeur": "Largeur (max nœuds par niveau)",
     "prof_feuilles": "Profondeur moyenne des feuilles",
     "taille_gauche": "Taille du sous-arbre gauche (nœuds internes)"
 }
@@ -40,9 +38,8 @@ for metric, title in metrics.items():
     plt.savefig(f"{metric}.png")
     plt.close()
 
-# -----------------------
-# Temps: time_ms vs n
-# -----------------------
+
+#Graphes temps de génération
 plt.figure()
 for algo in ALGOS:
     sub = df[df["algo"] == algo]
@@ -57,9 +54,7 @@ plt.tight_layout()
 plt.savefig("time_ms.png")
 plt.close()
 
-# -----------------------
-# Temps normalisé: time_ms / n
-# -----------------------
+#Graphes temps normalisé par n
 df2 = df.copy()
 df2["time_per_n"] = df2["time_ms"] / df2["n"].replace(0, np.nan)
 
@@ -77,4 +72,3 @@ plt.tight_layout()
 plt.savefig("time_per_n.png")
 plt.close()
 
-print("Graphes PNG générés : hauteur.png, prof_feuilles.png, taille_gauche.png, time_ms.png, time_per_n.png")
