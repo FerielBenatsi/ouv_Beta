@@ -1,3 +1,5 @@
+(*Q1.6 : affichage des arbres générés*)
+
 open Arbre_binaire
 
 (* Génère un fichier DOT Graphviz stylisé pour un arbre binaire plein *)
